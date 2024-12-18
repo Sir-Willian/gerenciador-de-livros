@@ -6,6 +6,10 @@ namespace GerenciadorDeLivros.Model;
 [Table("livros")]
 public class Livro
 {
+	[Column("id")]
+	[Key()]
+	public int Id { get; set; }
+
 	[Column("titulo")]
 	[Required()]
 	[MinLength(2)]
