@@ -1,6 +1,25 @@
 @GerenciadorDeLivros_HostAddress = http://localhost:5063
 
-GET {{GerenciadorDeLivros_HostAddress}}/weatherforecast/
+GET {{GerenciadorDeLivros_HostAddress}}/livros/
 Accept: application/json
+
+###
+
+POST {{GerenciadorDeLivros_HostAddress}}/livros/
+Content-Type: application/json
+{
+}
+
+###
+
+DELETE {{GerenciadorDeLivros_HostAddress}}/livros/
+Accept: application/json
+
+###
+
+PUT {{GerenciadorDeLivros_HostAddress}}/livros/
+Content-Type: application/json
+{
+}
 
 ###
