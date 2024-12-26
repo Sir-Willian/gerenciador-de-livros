@@ -51,8 +51,6 @@ public class LivrosController : ControllerBase
 	[HttpPut("{id}")]
 	public ActionResult Put(int id, Livro livro)
 	{
-		if(id != livro.Id) { return BadRequest("Id's são incorrespondentes!"); }
-
 		var existingLivro = LivroService.GetLivro(id, _context);
 		if(existingLivro == null) { return NotFound("Este livro não existe."); }
 

@@ -17,9 +17,13 @@ Accept: application/json
 
 ###
 
-PUT {{GerenciadorDeLivros_HostAddress}}/livros/
+PUT {{GerenciadorDeLivros_HostAddress}}/livros/-1
 Content-Type: application/json
 {
+  "titulo": "Teste de Api Atualizado",
+  "autor": "Willian",
+  "genero": "Programação",
+  "dataDePublicacao": "2024-12-26"
 }
 
 ###
