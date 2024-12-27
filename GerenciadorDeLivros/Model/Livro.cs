@@ -36,6 +36,6 @@ public class Livro
 	public string? Resumo { get; set; }
 
 	[Column("classificacao")]
-	[Range(0, 5)]
+	[Range(1, 5)]
 	public int Classificacao { get; set; }
 }
