@@ -30,7 +30,7 @@ public static class LivroService
 		livroNotUp.Genero = toUp.Genero;
 		livroNotUp.DataDePublicacao = toUp.DataDePublicacao != default ? toUp.DataDePublicacao : livroNotUp.DataDePublicacao;
 		livroNotUp.Resumo = toUp.Resumo ?? livroNotUp.Resumo;
-		livroNotUp.Classificacao = toUp.Classificacao;
+		livroNotUp.Classificacao = toUp.Classificacao != default ? toUp.Classificacao : livroNotUp.Classificacao;
 
 		livroContext.SaveChanges();
 	}
