@@ -54,7 +54,7 @@ public class LivrosController : ControllerBase
 		var existingLivro = LivroService.GetLivro(id, _context);
 		if(existingLivro == null) { return NotFound("Este livro não existe."); }
 
-		LivroService.UpdateLivro(livro, _context);
+		LivroService.UpdateLivro(existingLivro, livro, _context);
 
 		return NoContent();
 	}

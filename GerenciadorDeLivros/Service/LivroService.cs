@@ -23,9 +23,15 @@ public static class LivroService
 		livroContext.SaveChanges();
 	}
 
-	public static void UpdateLivro(Livro livroToUp, LivroContext livroContext)
+	public static void UpdateLivro(Livro livroNotUp, Livro toUp, LivroContext livroContext)
 	{
-		livroContext.Livros.Update(livroToUp);
+		livroNotUp.Titulo = toUp.Titulo;
+		livroNotUp.Autor = toUp.Autor;
+		livroNotUp.Genero = toUp.Genero;
+		livroNotUp.DataDePublicacao = toUp.DataDePublicacao != default ? toUp.DataDePublicacao : livroNotUp.DataDePublicacao;
+		livroNotUp.Resumo = toUp.Resumo ?? livroNotUp.Resumo;
+		livroNotUp.Classificacao = toUp.Classificacao;
+
 		livroContext.SaveChanges();
 	}
 }
