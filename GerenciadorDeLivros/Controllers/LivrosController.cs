@@ -1,7 +1,6 @@
 ﻿using GerenciadorDeLivros.Data;
 using GerenciadorDeLivros.Model;
 using GerenciadorDeLivros.Service;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciadorDeLivros.Controllers;
@@ -25,6 +24,18 @@ public class LivrosController : ControllerBase
 
 		return Ok(livro);
 	}
+
+	[HttpGet("titulo={titulo}")]
+	public ActionResult<List<Livro>> GetLivrosByTitulo(string titulo) => LivroService.GetLivrosByTitulo(titulo, _context);
+
+	[HttpGet("autor={autor}")]
+	public ActionResult<List<Livro>> GetLivrosByAutor(string autor) => LivroService.GetLivrosByAutor(autor, _context);
+
+	[HttpGet("genero={genero}")]
+	public ActionResult<List<Livro>> GetLivrosByGenero(string genero) => LivroService.GetLivrosByGenero(genero, _context);
+
+	[HttpGet("classificacao={classificacao}")]
+	public ActionResult<List<Livro>> GetLivrosByClassificacao(int classificacao) => LivroService.GetLivrosByClassificacao(classificacao, _context);
 
 	[HttpPost()]
 	public ActionResult<Livro> Post(Livro livro)

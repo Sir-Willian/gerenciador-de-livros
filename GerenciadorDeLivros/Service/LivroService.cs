@@ -11,6 +11,14 @@ public static class LivroService
 
 	public static Livro? GetLivro(int id, LivroContext livroContext) => livroContext.Livros.FirstOrDefault(l => l.Id == id);
 
+	public static List<Livro> GetLivrosByTitulo(string titulo, LivroContext livroContext) => livroContext.Livros.ToList().FindAll(l => l.Titulo == titulo);
+
+	public static List<Livro> GetLivrosByAutor(string autor, LivroContext livroContext) => livroContext.Livros.ToList().FindAll(l => l.Autor == autor);
+
+	public static List<Livro> GetLivrosByGenero(string genero, LivroContext livroContext) => livroContext.Livros.ToList().FindAll(l => l.Genero == genero);
+
+	public static List<Livro> GetLivrosByClassificacao(int classificacao, LivroContext livroContext) => livroContext.Livros.ToList().FindAll(l => l.Classificacao == classificacao);
+
 	public static void AddLivro(Livro livro, LivroContext livroContext)
 	{
 		livroContext.Livros.Add(livro);
