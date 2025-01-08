@@ -1,6 +1,7 @@
 ﻿using GerenciadorDeLivros.Data;
 using GerenciadorDeLivros.Model;
 using GerenciadorDeLivros.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciadorDeLivros.Controllers;
@@ -14,9 +15,11 @@ public class LivrosController : ControllerBase
 	public LivrosController(LivroContext context) { _context = context; }
 
 	[HttpGet()]
+	[Authorize()]
 	public ActionResult<List<Livro>> GetAll() => LivroService.GetLivros(_context);
 
 	[HttpGet("{id}")]
+	[Authorize()]
 	public ActionResult<Livro> Get(int id)
 	{
 		var livro = LivroService.GetLivro(id, _context);
@@ -26,18 +29,23 @@ public class LivrosController : ControllerBase
 	}
 
 	[HttpGet("titulo={titulo}")]
+	[Authorize()]
 	public ActionResult<List<Livro>> GetLivrosByTitulo(string titulo) => LivroService.GetLivrosByTitulo(titulo, _context);
 
 	[HttpGet("autor={autor}")]
+	[Authorize()]
 	public ActionResult<List<Livro>> GetLivrosByAutor(string autor) => LivroService.GetLivrosByAutor(autor, _context);
 
 	[HttpGet("genero={genero}")]
+	[Authorize()]
 	public ActionResult<List<Livro>> GetLivrosByGenero(string genero) => LivroService.GetLivrosByGenero(genero, _context);
 
 	[HttpGet("classificacao={classificacao}")]
+	[Authorize()]
 	public ActionResult<List<Livro>> GetLivrosByClassificacao(int classificacao) => LivroService.GetLivrosByClassificacao(classificacao, _context);
 
 	[HttpPost()]
+	[Authorize(Roles = "Funcionário,Gerente")]
 	public ActionResult<Livro> Post(Livro livro)
 	{
 		var existingLivro = LivroService.GetLivro(livro.Id, _context);
@@ -49,6 +57,7 @@ public class LivrosController : ControllerBase
 	}
 
 	[HttpDelete("{id}")]
+	[Authorize(Roles = "Gerente")]
 	public ActionResult Delete(int id)
 	{
 		var existingLivro = LivroService.GetLivro(id, _context);
@@ -60,6 +69,7 @@ public class LivrosController : ControllerBase
 	}
 
 	[HttpPut("{id}")]
+	[Authorize(Roles = "Funcionário,Gerente")]
 	public ActionResult Put(int id, Livro livro)
 	{
 		var existingLivro = LivroService.GetLivro(id, _context);
