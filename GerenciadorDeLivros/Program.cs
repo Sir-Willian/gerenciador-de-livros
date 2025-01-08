@@ -1,4 +1,5 @@
 using GerenciadorDeLivros.Data;
+using GerenciadorDeLivros.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -28,6 +29,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]))
         };
 	});
+JwtAuth.Configuration = builder.Configuration;
 
 var app = builder.Build();
 
