@@ -63,7 +63,7 @@ namespace GerenciadorDeLivros.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("livros");
+                    b.ToTable("livros", (string)null);
                 });
 #pragma warning restore 612, 618
         }
