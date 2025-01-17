@@ -32,8 +32,7 @@ public class Emprestimo
 	public int LivroId { get; set; }
 
 	// Propriedade de navegação
-	[NotMapped()]
-	private Livro? LivroToBind { get; set; }
+	public Livro? LivroToBind { get; set; }
 
 	[Column("data_do_emprestimo")]
 	[Required()]
