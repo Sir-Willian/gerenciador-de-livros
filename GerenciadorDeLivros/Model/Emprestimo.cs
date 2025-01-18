@@ -11,7 +11,7 @@ public class Emprestimo
 	public int EmprestimoId { get; set; }
 
 	[Column("email")]
-	[EmailAddress()]
+	[EmailAddress(ErrorMessage = "Endereço inválido.")]
 	[Required()]
 	public string? Email { get; set; }
 
