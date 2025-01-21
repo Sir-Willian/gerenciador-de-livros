@@ -25,6 +25,12 @@ public class EmprestimosController : ControllerBase
 		return emprestimo;
 	}
 
+	[HttpGet("email={email}")]
+	public ActionResult<List<Emprestimo>> GetAllByEmail(string email) => EmprestimoService.GetEmprestimosByEmail(email, context);
+
+	[HttpGet("livro_id={livroId}")]
+	public ActionResult<List<Emprestimo>> GetAllByLivroId(int livroId) => EmprestimoService.GetEmprestimosByLivroId(livroId, context);
+
 	[HttpPost()]
 	public ActionResult<Emprestimo> Post(Emprestimo emprestimo)
 	{

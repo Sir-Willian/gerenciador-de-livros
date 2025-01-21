@@ -11,6 +11,10 @@ public class EmprestimoService
 
 	public static Emprestimo? GetEmprestimo(int id, EmprestimoContext emprestimoContext) => emprestimoContext.Emprestimos.FirstOrDefault(e => e.EmprestimoId == id);
 
+	public static List<Emprestimo> GetEmprestimosByEmail(string email, EmprestimoContext emprestimoContext) => emprestimoContext.Emprestimos.ToList().FindAll(e => e.Email == email);
+
+	public static List<Emprestimo> GetEmprestimosByLivroId(int id, EmprestimoContext emprestimoContext) => emprestimoContext.Emprestimos.ToList().FindAll(e => e.LivroId == id);
+
 	public static void AddEmprestimo(Emprestimo emprestimo, EmprestimoContext emprestimoContext)
 	{
 		emprestimoContext.Emprestimos.Add(emprestimo);
