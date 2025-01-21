@@ -1,6 +1,7 @@
 ﻿using GerenciadorDeLivros.Data;
 using GerenciadorDeLivros.Model;
 using GerenciadorDeLivros.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciadorDeLivros.Controllers;
@@ -14,9 +15,11 @@ public class EmprestimosController : ControllerBase
 	public EmprestimosController(EmprestimoContext _context) { context = _context; }
 
 	[HttpGet()]
+	[Authorize()]
 	public ActionResult<List<Emprestimo>> GetAll() => EmprestimoService.GetEmprestimos(context);
 
 	[HttpGet("{id}")]
+	[Authorize()]
 	public ActionResult<Emprestimo> Get(int id)
 	{
 		var emprestimo = EmprestimoService.GetEmprestimo(id, context);
@@ -26,12 +29,15 @@ public class EmprestimosController : ControllerBase
 	}
 
 	[HttpGet("email={email}")]
+	[Authorize()]
 	public ActionResult<List<Emprestimo>> GetAllByEmail(string email) => EmprestimoService.GetEmprestimosByEmail(email, context);
 
 	[HttpGet("livro_id={livroId}")]
+	[Authorize()]
 	public ActionResult<List<Emprestimo>> GetAllByLivroId(int livroId) => EmprestimoService.GetEmprestimosByLivroId(livroId, context);
 
 	[HttpPost()]
+	[Authorize()]
 	public ActionResult<Emprestimo> Post(Emprestimo emprestimo)
 	{
 		var existingEmprestimo = EmprestimoService.GetEmprestimo(emprestimo.EmprestimoId, context);
@@ -43,6 +49,7 @@ public class EmprestimosController : ControllerBase
 	}
 
 	[HttpDelete("{id}")]
+	[Authorize(Roles = "Funcionário,Gerente")]
 	public ActionResult Delete(int id)
 	{
 		var existingEmprestimo = EmprestimoService.GetEmprestimo(id, context);
@@ -54,6 +61,7 @@ public class EmprestimosController : ControllerBase
 	}
 
 	[HttpPut("{id}")]
+	[Authorize(Roles = "Funcionário,Gerente")]
 	public ActionResult Put(int id, Emprestimo emprestimo)
 	{
 		var existingEmprestimo = EmprestimoService.GetEmprestimo(id, context);
